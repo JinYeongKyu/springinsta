@@ -34,7 +34,7 @@ public class MemberController {
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "로그아웃 되었습니다.";
+        return "";
     }
 
     @GetMapping("/current-user")

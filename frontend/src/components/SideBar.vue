@@ -3,7 +3,7 @@
     <ul class="nav flex-column">
       <div class="logo">Instagram</div>
       <li class="nav-item">
-        <a class="nav-link active" href="#"><i class='fas fa-home'></i>홈</a>
+        <router-link class="nav-link" to="/"><i class='fas fa-home'></i>홈</router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class='fas fa-search'></i>검색</a>
@@ -12,7 +12,7 @@
         <a class="nav-link" href="#"><i class='fas fa-paper-plane'></i>메시지</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class='fas fa-user'></i>프로필</a>
+        <router-link class="nav-link" to="/profile"><i class='fas fa-user'></i>프로필</router-link>
       </li>
     </ul>
   </div>

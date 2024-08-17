@@ -26,19 +26,13 @@ const username = ref('');  // 사용자 이름을 저장할 ref
 const isLoggedIn = ref(false);  // 로그인 상태를 저장할 ref
 
 const fetchCurrentUser = async () => {
-  try {
-    const response = await fetch('/api/current-user');
-    if (response.ok) {
-      const user = await response.json();
-      username.value = user.id;  // 서버에서 받은 사용자 ID를 저장
-      isLoggedIn.value = true;  // 로그인 상태로 설정
-    } else {
-      username.value = 'Guest';  // 로그인하지 않은 경우 기본값 설정
-      isLoggedIn.value = false;  // 로그인되지 않은 상태로 설정
-    }
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-    username.value = 'Guest';  // 에러가 발생한 경우 기본값 설정
+  const response = await fetch('/api/current-user');
+  if (response.ok) {
+    const user = await response.json();
+    username.value = user.id;  // 서버에서 받은 사용자 ID를 저장
+    isLoggedIn.value = true;  // 로그인 상태로 설정
+  } else {
+    username.value = 'Guest';  // 로그인하지 않은 경우 기본값 설정
     isLoggedIn.value = false;  // 로그인되지 않은 상태로 설정
   }
 };
