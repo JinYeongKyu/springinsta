@@ -16,7 +16,7 @@ public class DatabaseConfig {
 
     @Value("${driver-class-name}")
     private String driver;
-    @Value("${oracle-url}")
+    @Value("${url}")
     private String url;
     @Value("${user}")
     private String user;
@@ -26,6 +26,7 @@ public class DatabaseConfig {
     @Bean
     DataSource dataSource(){
         HikariConfig hikariConfig = new HikariConfig();
+        System.out.println(user);
         hikariConfig.setDriverClassName(driver);
         hikariConfig.setJdbcUrl(url);
         hikariConfig.setUsername(user);
