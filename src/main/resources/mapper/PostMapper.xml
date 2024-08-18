@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ictedu.springapp.mapper.PostMapper">
+
+    <insert id="createPost" parameterType="com.ictedu.springapp.model.PostDTO">
+        INSERT INTO post (user_id, content, image_url, location, hashtag)
+        VALUES (#{userId}, #{content}, #{imgUrl}, #{location}, #{hashtag})
+    </insert>
+
+    <select id="getAllPost" resultType="com.ictedu.springapp.model.PostDTO">
+        SELECT post_id AS postId,
+        user_id AS userId,
+        location,
+        content,
+        hashtag,
+        image_url AS imgUrl,  <!-- 수정된 부분 -->
+        created_at AS createdAt,
+        likes_count AS likesCount,
+        comments_count AS commentsCount
+        FROM post
+        ORDER BY created_at DESC
+    </select>
+
+</mapper>

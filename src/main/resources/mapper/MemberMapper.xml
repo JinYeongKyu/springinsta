@@ -9,7 +9,7 @@
     </insert>
 
     <select id="getUserById" parameterType="String" resultType="com.ictedu.springapp.model.MemberDTO">
-        SELECT id, password
+        SELECT *
         FROM member
         WHERE id = #{id}
     </select>

@@ -3,18 +3,18 @@
     <div class="main-feed">
       <div class="post" v-for="post in posts" :key="post.id">
         <div class="post-header">
-          <h5>{{ post.name }}</h5>
-          <p>{{ post.date }}</p>
+          <h5>{{ post.userId }}</h5>
+          <p>{{ post.createdAt }}</p>
         </div>
-        <p>{{ post.area }}</p>
-        <img :src="post.image" alt="Post Image" class="post-image" />
+        <p>{{ post.location }}</p>
+        <img :src="post.imgUrl" alt="Post Image" class="post-image" />
         <div class="post-actions">
           <i class='far fa-heart' style='font-size:24px'></i>
           <i class='far fa-comment' style='font-size:24px'></i>
           <i class='far fa-paper-plane' style='font-size:24px'></i>
         </div>
         <div class="post-like">
-          <p>좋아요 {{ post.like }}개</p>
+          <p>좋아요 {{ post.likesCount }}개</p>
         </div>
         <div class="post-content">
           <p>{{ post.content }}</p>
@@ -28,20 +28,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-const posts = ref([
-  { id: 1, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800', hashtag:'#테스트', like: 1000, area: '위례동' },
-  { id: 2, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 3, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 4, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 5, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 6, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 7, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 8, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 9, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' },
-  { id: 10, name: '진영규', date: '3일전', content: 'Content of post 1...', image: 'https://via.placeholder.com/800x800' }
-]);
+const posts = ref([]);
+
+const fetchPosts = async () => {
+  try {
+    const response = await axios.get('/api/post');
+    posts.value = response.data;
+    console.log(posts.value)
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+  }
+};
+
+onMounted(() => {
+  fetchPosts();
+});
 </script>
 
 <style scoped>
