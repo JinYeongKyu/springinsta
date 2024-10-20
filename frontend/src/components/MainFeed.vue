@@ -16,7 +16,7 @@
         <div class="post-like">
           <p>좋아요 {{ post.likesCount }}개</p>
         </div>
-        <div class="post-content">
+        <div class="post-content">ㅇ
           <p>{{ post.content }}</p>
         </div>
         <div class="post-hashtag">
