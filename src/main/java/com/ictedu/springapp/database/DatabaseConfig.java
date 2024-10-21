@@ -18,8 +18,8 @@ public class DatabaseConfig {
     private String driver;
     @Value("${url}")
     private String url;
-    @Value("${username}")
-    private String username;
+    @Value("${user}")
+    private String user;
     @Value("${password}")
     private String password;
 
@@ -28,7 +28,7 @@ public class DatabaseConfig {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName(driver);
         hikariConfig.setJdbcUrl(url);
-        hikariConfig.setUsername(username);
+        hikariConfig.setUsername(user);
         hikariConfig.setPassword(password);
         hikariConfig.setAutoCommit(true);
         hikariConfig.setConnectionTimeout(30000);
